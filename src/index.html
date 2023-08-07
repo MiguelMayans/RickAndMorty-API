@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script type="module" src="/dist/index.js"></script>
+    <title>Rick and Morty API</title>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-2">
+                <div class="border bg-white">
+                    <div class="sidebar-heading border-bottom bg-light p-4 h4">List of Episodes</div>
+                    <div class="list-group list-group-flush" id="episodeList">
+                    </div>
+                    <button class="list-group list-group-flush" id="ShowMoreBtn">Show more</button>
+                </div>
+            </div>
+
+            <div class="col-9">
+                <section>
+                    <div class="container-fluid text-center">
+                        <img src="/assets/img/Rick-And-Morty-Logo.png" alt="Rick and Morty Logo" height="200">
+                    </div>
+                </section>
+
+                <main>
+
+
+                    <div class="container-fluiud w-100" id="titleContainer">
+
+                        <div class="row row-cols-3" id="characterContainer">
+
+                            <!-- <div class="col g-4">
+                                <div class="card border-3 h-100">
+                                    <img class="card-img-top" src="/assets/img/example.jpg" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Character Name</h5>
+                                        <p class="card-text">Type: Human.</p>
+                                        <p class="card-text">Status: Alive</p>
+                                        <p class="card-text">Dimension: Yes</p>
+                                        <a href="#" class="btn btn-primary">Go somewhere</a>
+                                    </div>
+                                </div>
+                            </div> -->
+
+
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
