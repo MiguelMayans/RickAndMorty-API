@@ -42,8 +42,11 @@ async function init() {
             titleContainer?.prepend(h2)
 
             console.log(episode.characters)
-            const characters = await getCharacters();
+            
+            for (let i=1; i <= 42; i++) {
+            const characters = await getCharacters(i);
             const urlChars = episode.characters
+
             urlChars.forEach(url => {
 
                 characters.forEach((character: Character) => {
@@ -58,6 +61,8 @@ async function init() {
                         const cardContainer = document.createElement("div")
                         cardContainer.classList.add("card")
                         cardContainer.classList.add("border-3")
+                        cardContainer.classList.add("border-dark")
+                        cardContainer.classList.add("rounded")
                         cardContainer.classList.add("h-100")
                         mainDiv.appendChild(cardContainer)
 
@@ -85,23 +90,20 @@ async function init() {
 
                         const cardDimension = document.createElement("p")
                         cardDimension.classList.add("card-text")
-                        cardDimension.textContent = `Dimension: ${character.location.origin}`
+                        cardDimension.textContent = `Dimension: ${character.location.name}`
 
                         cardBody.appendChild(cardTitle)
                         cardBody.appendChild(cardType)
                         cardBody.appendChild(cardStatus)
                         cardBody.appendChild(cardDimension)
+                    
                     }
                 })
-
-
-
-
 
             })
 
         }
-
+    }
     })
 
 }

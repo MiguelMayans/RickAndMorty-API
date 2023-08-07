@@ -37,48 +37,52 @@ function init() {
                     titleContainer === null || titleContainer === void 0 ? void 0 : titleContainer.prepend(season);
                     titleContainer === null || titleContainer === void 0 ? void 0 : titleContainer.prepend(h2);
                     console.log(episode.characters);
-                    const characters = yield getCharacters();
-                    const urlChars = episode.characters;
-                    urlChars.forEach(url => {
-                        characters.forEach((character) => {
-                            if (url === character.url) {
-                                const characterContainer = document.querySelector("#characterContainer");
-                                const mainDiv = document.createElement("div");
-                                mainDiv.classList.add("col");
-                                mainDiv.classList.add("g-4");
-                                characterContainer === null || characterContainer === void 0 ? void 0 : characterContainer.appendChild(mainDiv);
-                                const cardContainer = document.createElement("div");
-                                cardContainer.classList.add("card");
-                                cardContainer.classList.add("border-3");
-                                cardContainer.classList.add("h-100");
-                                mainDiv.appendChild(cardContainer);
-                                const cardImage = document.createElement("img");
-                                cardImage.classList.add("card-image-top");
-                                cardImage.src = character.image;
-                                cardImage.alt = `${character.id} image`;
-                                cardContainer.appendChild(cardImage);
-                                const cardBody = document.createElement("div");
-                                cardBody.classList.add("card-body");
-                                cardContainer.appendChild(cardBody);
-                                const cardTitle = document.createElement("h5");
-                                cardTitle.classList.add("card-title");
-                                cardTitle.textContent = character.name;
-                                const cardType = document.createElement("p");
-                                cardType.classList.add("card-text");
-                                cardType.textContent = `Type: ${character.type}`;
-                                const cardStatus = document.createElement("p");
-                                cardStatus.classList.add("card-text");
-                                cardStatus.textContent = `Status: ${character.status}`;
-                                const cardDimension = document.createElement("p");
-                                cardDimension.classList.add("card-text");
-                                cardDimension.textContent = `Dimension: ${character.location.origin}`;
-                                cardBody.appendChild(cardTitle);
-                                cardBody.appendChild(cardType);
-                                cardBody.appendChild(cardStatus);
-                                cardBody.appendChild(cardDimension);
-                            }
+                    for (let i = 1; i <= 42; i++) {
+                        const characters = yield getCharacters(i);
+                        const urlChars = episode.characters;
+                        urlChars.forEach(url => {
+                            characters.forEach((character) => {
+                                if (url === character.url) {
+                                    const characterContainer = document.querySelector("#characterContainer");
+                                    const mainDiv = document.createElement("div");
+                                    mainDiv.classList.add("col");
+                                    mainDiv.classList.add("g-4");
+                                    characterContainer === null || characterContainer === void 0 ? void 0 : characterContainer.appendChild(mainDiv);
+                                    const cardContainer = document.createElement("div");
+                                    cardContainer.classList.add("card");
+                                    cardContainer.classList.add("border-3");
+                                    cardContainer.classList.add("border-dark");
+                                    cardContainer.classList.add("rounded");
+                                    cardContainer.classList.add("h-100");
+                                    mainDiv.appendChild(cardContainer);
+                                    const cardImage = document.createElement("img");
+                                    cardImage.classList.add("card-image-top");
+                                    cardImage.src = character.image;
+                                    cardImage.alt = `${character.id} image`;
+                                    cardContainer.appendChild(cardImage);
+                                    const cardBody = document.createElement("div");
+                                    cardBody.classList.add("card-body");
+                                    cardContainer.appendChild(cardBody);
+                                    const cardTitle = document.createElement("h5");
+                                    cardTitle.classList.add("card-title");
+                                    cardTitle.textContent = character.name;
+                                    const cardType = document.createElement("p");
+                                    cardType.classList.add("card-text");
+                                    cardType.textContent = `Type: ${character.type}`;
+                                    const cardStatus = document.createElement("p");
+                                    cardStatus.classList.add("card-text");
+                                    cardStatus.textContent = `Status: ${character.status}`;
+                                    const cardDimension = document.createElement("p");
+                                    cardDimension.classList.add("card-text");
+                                    cardDimension.textContent = `Dimension: ${character.location.name}`;
+                                    cardBody.appendChild(cardTitle);
+                                    cardBody.appendChild(cardType);
+                                    cardBody.appendChild(cardStatus);
+                                    cardBody.appendChild(cardDimension);
+                                }
+                            });
                         });
-                    });
+                    }
                 });
             }
         });

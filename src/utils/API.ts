@@ -2,8 +2,8 @@
 
 const url = "https://rickandmortyapi.com/api"
 const urlEpisodes = `${url}/episode`
+const page:number = 1
 
-const urlCharacters = `${url}/character?per_page=2`
 
 export async function getEpisodes(): Promise<Episodes[]> {
     const response = await fetch(urlEpisodes)
@@ -12,9 +12,8 @@ export async function getEpisodes(): Promise<Episodes[]> {
 }
 
 
-
-export async function getCharacters(): Promise<Character[]> {
-    const response = await fetch(urlCharacters)
+export async function getCharacters(page: number): Promise<Character[]> {
+    const response = await fetch(`https://rickandmortyapi.com/api/character?page=${page}`)
     const data = await response.json()
     return data.results
 }
