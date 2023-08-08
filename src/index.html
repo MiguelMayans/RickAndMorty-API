@@ -13,16 +13,18 @@
     <title>Rick and Morty API</title>
 </head>
 
-<body class="bg-gradient bg-dark-subtle">
+<body class="bg-gradient bg-light-subtle">
     <div class="container">
 
         <div class="row">
             <div class="col-3">
                 <div class="border border-black bg-white mt-5 mb-4 border-3">
                     <div class="sidebar-heading border-bottom bg-light p-4 h4">List of Episodes</div>
-                    <div class="list-group list-group-flush" id="episodeList">
+                    <div class="list-group list-group-flush" id="episodeList"></div>
+                    <div id="btnContainer">
+                        <button class="btn btn-dark list-group-flush text-center w-100" id="ShowMoreBtn">Show
+                            All</button>
                     </div>
-                    <button class="btn btn-dark list-group-flush text-center w-100" id="ShowMoreBtn">Show more</button>
                 </div>
             </div>
 
@@ -33,29 +35,12 @@
                     </div>
                 </section>
 
-                <main>
+                <main id="main">
 
+                    <div class="container-fluid w-100" id="titleContainer"></div>
 
-                    <div class="container-fluiud w-100" id="titleContainer">
+                    <div class="row row-cols-3" id="characterContainer"></div>
 
-                        <div class="row row-cols-3" id="characterContainer">
-
-                            <!-- <div class="col g-4">
-                                <div class="card border-3 h-100">
-                                    <img class="card-img-top" src="/assets/img/example.jpg" alt="Card image cap">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Character Name</h5>
-                                        <p class="card-text">Type: Human.</p>
-                                        <p class="card-text">Status: Alive</p>
-                                        <p class="card-text">Dimension: Yes</p>
-                                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                                    </div>
-                                </div>
-                            </div> -->
-
-
-                        </div>
-                    </div>
                 </main>
             </div>
         </div>
