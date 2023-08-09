@@ -18,8 +18,8 @@
 
         <div class="row">
             <div class="col-3">
-                <div class="border border-black bg-white mt-5 mb-4 border-3">
-                    <div class="sidebar-heading border-bottom bg-light p-4 h4">List of Episodes</div>
+                <div class="border border-black bg-white mt-5 mb-4 border-3 rounded-1">
+                    <div class="sidebar-heading border-bottom bg-light p-4 h4 text-center">List of Episodes</div>
                     <div class="list-group list-group-flush" id="episodeList"></div>
                     <div id="btnContainer">
                         <button class="btn btn-dark list-group-flush text-center w-100" id="ShowMoreBtn">Show
@@ -30,18 +30,29 @@
 
             <div class="col-9">
                 <section>
-                    <div class="container-fluid text-center">
-                        <img src="/assets/img/Rick-And-Morty-Logo.png" alt="Rick and Morty Logo" height="250">
-                    </div>
+                    <header>
+                        <div class="container-fluid text-center">
+                            <img src="/assets/img/Rick-And-Morty-Logo.png" alt="Rick and Morty Logo" height="250">
+                        </div>
+                    </header>
                 </section>
 
                 <main id="main">
-
                     <div class="container-fluid w-100" id="titleContainer"></div>
-
                     <div class="row row-cols-3" id="characterContainer"></div>
-
                 </main>
+
+                <section>
+                    <dialog class="modal fade" id="modal">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header h2 justify-content-center"></div>
+                                <div class="modal-body">Hello Hello</div>
+                            </div>
+                        </div>
+                    </dialog>
+                </section>
+
             </div>
         </div>
     </div>

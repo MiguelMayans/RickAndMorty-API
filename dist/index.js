@@ -17,10 +17,7 @@ function init() {
         const episodes = yield getEpisodes(1);
         episodes.forEach((episode) => {
             const episodeTitle = document.createElement("div");
-            episodeTitle.classList.add("list-group-item");
-            episodeTitle.classList.add("list-group-item-action");
-            episodeTitle.classList.add("list-group-item-light");
-            episodeTitle.classList.add("p-2");
+            episodeTitle.classList.add("list-group-item", "list-group-item-action", "list-group-item-light", "p-2");
             episodeTitle.textContent = `${episode.episode} - ${episode.name}`;
             episodeList === null || episodeList === void 0 ? void 0 : episodeList.appendChild(episodeTitle);
             episodeTitle.addEventListener(("click"), () => showCharacters(episode));
@@ -51,26 +48,22 @@ function showCharacters(episode) {
                 characters.forEach((character) => {
                     if (url === character.url) {
                         const mainDiv = document.createElement("div");
-                        mainDiv.classList.add("col");
-                        mainDiv.classList.add("g-4");
+                        mainDiv.classList.add("col", "g-4");
                         characterContainer === null || characterContainer === void 0 ? void 0 : characterContainer.appendChild(mainDiv);
                         const cardContainer = document.createElement("div");
-                        cardContainer.classList.add("card");
-                        cardContainer.classList.add("border-3");
-                        cardContainer.classList.add("border-dark");
-                        cardContainer.classList.add("rounded");
-                        cardContainer.classList.add("h-100");
+                        cardContainer.classList.add("card", "border-3", "border-dark", "rounded", "h-100");
                         mainDiv.appendChild(cardContainer);
                         const cardImage = document.createElement("img");
                         cardImage.classList.add("card-image-top");
                         cardImage.src = character.image;
                         cardImage.alt = `${character.id} image`;
                         cardContainer.appendChild(cardImage);
+                        cardImage.addEventListener("click", showModal);
                         const cardBody = document.createElement("div");
                         cardBody.classList.add("card-body");
                         cardContainer.appendChild(cardBody);
                         const cardTitle = document.createElement("h5");
-                        cardTitle.classList.add("card-title");
+                        cardTitle.classList.add("card-title", "border-bottom", "border-3", "border-dark", "p-1");
                         cardTitle.textContent = character.name;
                         const cardType = document.createElement("p");
                         cardType.classList.add("card-text");
@@ -110,5 +103,9 @@ function showMore() {
             });
         }
     });
+}
+function showModal() {
+    const modal = document.querySelector("#modal");
+    modal.showModal();
 }
 //# sourceMappingURL=index.js.map

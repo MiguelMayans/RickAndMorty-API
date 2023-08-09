@@ -11,7 +11,6 @@ interface Character {
     episode: string[];
     url: string;
     created: string;
-
 }
 
 interface Location {

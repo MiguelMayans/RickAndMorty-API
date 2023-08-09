@@ -21,4 +21,11 @@ export function getCharacters(page) {
         return data.results;
     });
 }
+export function getLocations(page) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const response = yield fetch(`https://rickandmortyapi.com/api/location?page=${page}`);
+        const data = yield response.json();
+        return data.results;
+    });
+}
 //# sourceMappingURL=API.js.map
