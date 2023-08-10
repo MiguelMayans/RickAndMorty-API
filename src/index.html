@@ -9,6 +9,7 @@
         crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="/src/style.css">
     <script type="module" src="/dist/index.js"></script>
     <title>Rick and Morty API</title>
 </head>
@@ -22,8 +23,8 @@
                     <div class="sidebar-heading border-bottom bg-light p-4 h4 text-center">List of Episodes</div>
                     <div class="list-group list-group-flush" id="episodeList"></div>
                     <div id="btnContainer">
-                        <button class="btn btn-dark list-group-flush text-center w-100" id="ShowMoreBtn">Show
-                            All</button>
+                        <button class="btn btn-dark list-group-flush text-center w-100"
+                            id="ShowMoreBtn">ShowAll</button>
                     </div>
                 </div>
             </div>
@@ -40,6 +41,7 @@
                 <main id="main">
                     <div class="container-fluid w-100" id="titleContainer"></div>
                     <div class="row row-cols-3" id="characterContainer"></div>
+                    <div class="row row-cols-3" id="residentsContainer"></div>
                 </main>
 
                 <section>
@@ -48,9 +50,11 @@
                             <div class="modal-content w-auto border-4 border-black">
                                 <div class="modal-header h2 justify-content-center" id="charName"></div>
                                 <div class="modal-body text-center">
-                                    <img src="" alt="" class="p-5" id="charImage">
-                                    <div class="p-2 text-center mb-4" id="charText"></div>
-                                    <div class="p-1 text-center h4" id="charEpisodes">List of Episodes</div>
+                                    <img src="" alt="" class="p-4" id="charImage">
+                                    <div class="p-2 text-center mb-2" id="charText"></div>
+                                    <div class="p-2 text-center mb-2" id="charLocation"></div>
+                                    <div class="p-1 text-center h4 border-bottom border-3 border-top" id="charEpisodes">
+                                        List of Episodes</div>
                                     <div class="text-center" id="charEpisodeList"></div>
                                 </div>
                             </div>

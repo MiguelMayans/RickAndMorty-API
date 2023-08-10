@@ -1,10 +1,12 @@
 import { getEpisodes } from "./utils/API.js";
 import { getCharacters } from "./utils/API.js";
+import { getLocations } from "./utils/API.js";
 
 const showMoreBtn = document.querySelector("#ShowMoreBtn")
 const episodeList = document.querySelector("#episodeList")
-
-// Init Function
+const main2 = document.querySelector("#residentsContainer") as HTMLElement
+const main = document.querySelector("#titleContainer") as HTMLElement
+// Init Function //
 
 window.addEventListener("load", init);
 
@@ -14,7 +16,7 @@ async function init() {
 
     episodes.forEach((episode) => {
         const episodeTitle = document.createElement("a")
-        episodeTitle.classList.add("list-group-item", "list-group-item-action", "list-group-item-light", "p-2", "cursor-pointer")
+        episodeTitle.classList.add("list-group-item", "list-group-item-action", "list-group-item-light", "p-2")
         episodeTitle.textContent = `${episode.episode} - ${episode.name}`
         episodeList?.appendChild(episodeTitle)
 
@@ -22,11 +24,12 @@ async function init() {
     })
 }
 
-// Show Characters
+// Show Characters //
 
 async function showCharacters(episode: Episodes) {
-    const main = document.querySelector("#titleContainer") as HTMLElement
+
     main.textContent = ""
+    main2.textContent = ""
 
     const titleContainer = document.querySelector("#titleContainer")
     const h2 = document.createElement("h2")
@@ -55,13 +58,15 @@ async function showCharacters(episode: Episodes) {
 
             characters.forEach((character: Character) => {
                 if (url === character.url) {
+                    const main2 = document.querySelector("#residentsContainer") as HTMLElement
+                    main2.textContent = ""
 
                     const mainDiv = document.createElement("div")
                     mainDiv.classList.add("col", "g-4")
                     characterContainer?.appendChild(mainDiv)
 
                     const cardContainer = document.createElement("div")
-                    cardContainer.classList.add("card", "border-3", "border-dark", "rounded", "h-100", "cursor-pointer")
+                    cardContainer.classList.add("card", "border-3", "border-dark", "rounded", "h-100")
                     mainDiv.appendChild(cardContainer)
 
                     const cardImage = document.createElement("img")
@@ -69,47 +74,6 @@ async function showCharacters(episode: Episodes) {
                     cardImage.src = character.image
                     cardImage.alt = `${character.id} image`
                     cardContainer.appendChild(cardImage)
-
-                    // Show Modal
-
-                    cardImage.setAttribute("data-bs-toggle", "modal")
-                    cardImage.setAttribute("data-bs-target", "#modal")
-                    cardImage.addEventListener("click", showModal)
-
-                    async function showModal() {
-                        const modal = document.querySelector("#modal") as HTMLDialogElement
-                        modal.showModal
-
-                        const charName = document.querySelector("#charName") as HTMLElement
-                        charName.textContent = character.name
-
-                        const charImage = document.querySelector("#charImage") as HTMLImageElement
-                        charImage.src = character.image
-                        charImage.alt = `${character.id} image`
-
-                        const charText = document.querySelector("#charText") as HTMLElement
-                        charText.textContent = `Gender: ${character.gender} | Status: ${character.status} | Specie: ${character.species} | Location: ${character.location.name}`
-
-                        const charEpisodeList = document.querySelector("#charEpisodeList") as HTMLElement
-                        charEpisodeList.textContent = ""
-
-                        for (let i = 1; i <= 3; i++) {
-                            const episodes = await getEpisodes(i)
-
-                            episodes.forEach((episode) => {
-                                const urlChars = episode.characters
-
-                                urlChars.forEach(url => {
-
-                                    if (character.url == url) {
-                                        const createEpisodes = document.createElement("div")
-                                        createEpisodes.textContent = `${episode.episode} - ${episode.name}`
-                                        charEpisodeList.appendChild(createEpisodes)
-                                    }
-                                })
-                            })
-                        }
-                    }
 
                     const cardBody = document.createElement("div")
                     cardBody.classList.add("card-body")
@@ -135,13 +99,143 @@ async function showCharacters(episode: Episodes) {
                     cardBody.appendChild(cardSpicie)
                     cardBody.appendChild(cardStatus)
                     cardBody.appendChild(cardDimension)
+
+                    // Show Modal //
+
+                    cardImage.setAttribute("data-bs-toggle", "modal")
+                    cardImage.setAttribute("data-bs-target", "#modal")
+
+                    cardImage.addEventListener("click", showModal)
+
+                    async function showModal() {
+                        main2.textContent = ""
+                        const modal = document.querySelector("#modal") as HTMLDialogElement
+                        modal.showModal
+                        modal.setAttribute("data-bs-dismiss", "modal")
+                        modal.setAttribute("data-bs-target", "#modal")
+
+                        const charName = document.querySelector("#charName") as HTMLElement
+                        charName.textContent = character.name
+
+                        const charImage = document.querySelector("#charImage") as HTMLImageElement
+                        charImage.src = character.image
+                        charImage.alt = `${character.id} image`
+
+                        const charText = document.querySelector("#charText") as HTMLElement
+                        charText.textContent = `Gender: ${character.gender} | Status: ${character.status} | Specie: ${character.species}`
+
+                        const charLocation = document.querySelector("#charLocation") as HTMLElement
+                        charLocation.textContent = `Location: ${character.origin.name}`
+                        charLocation.classList.add("border-3", "border", "border-black", "w-50", "bg-body-primary", "mb-3")
+
+                        charLocation.addEventListener("click", showLocation)
+
+                        // Show List of Character Episodes in Modal //
+
+                        const charEpisodeList = document.querySelector("#charEpisodeList") as HTMLElement
+                        charEpisodeList.textContent = ""
+
+                        for (let i = 1; i <= 3; i++) {
+                            const episodes = await getEpisodes(i)
+
+                            episodes.forEach((episode) => {
+                                const urlChars = episode.characters
+
+                                urlChars.forEach(url => {
+
+                                    if (character.url === url) {
+                                        const createEpisodes = document.createElement("div")
+                                        createEpisodes.textContent = `${episode.episode} - ${episode.name}`
+                                        charEpisodeList.appendChild(createEpisodes)
+                                    }
+                                })
+                            })
+                        }
+
+                    }
+
+                }
+                async function showLocation() {
+
+                    for (let i = 1; i <= 7; i++) {
+                        const location = await getLocations(i)
+
+                        location.forEach(async loc => {
+
+                            if (loc.url === character.origin.url) {
+
+                                main.textContent = ""
+                                characterContainer.textContent = ""
+
+                                const locName = document.createElement("h2")
+                                locName.textContent = loc.name
+
+                                const locDimension = document.createElement("div")
+                                locDimension.textContent = loc.dimension
+
+                                const locType = document.createElement("div")
+                                locType.textContent = loc.type
+
+                                const residentsTitle = document.createElement("h3")
+                                residentsTitle.classList.add("p-2", "border-3", "border-bottom")
+                                residentsTitle.textContent = "List of Residents"
+
+                                main.appendChild(locName)
+                                main.appendChild(locDimension)
+                                main.appendChild(locType)
+                                main.appendChild(residentsTitle)
+
+
+                                for (let i = 1; i <= 42; i++) {
+
+                                    const characters = await getCharacters(i);
+
+                                    characters.forEach(character => {
+
+                                        if (loc.name === character.location.name) {
+
+                                            const mainDiv = document.createElement("div")
+                                            mainDiv.classList.add("col", "g-4")
+                                            main2.appendChild(mainDiv)
+
+                                            const cardContainer = document.createElement("div")
+                                            cardContainer.classList.add("card", "border-3", "border-dark", "rounded", "h-100")
+                                            mainDiv.appendChild(cardContainer)
+
+                                            const cardImage = document.createElement("img")
+                                            cardImage.classList.add("card-image-top")
+                                            cardImage.src = character.image
+                                            cardImage.alt = `${character.id} image`
+                                            cardContainer.appendChild(cardImage)
+
+                                            const cardBody = document.createElement("div")
+                                            cardBody.classList.add("card-body")
+                                            cardContainer.appendChild(cardBody)
+
+                                            const cardTitle = document.createElement("h5")
+                                            cardTitle.classList.add("card-title", "border-bottom", "border-3", "border-dark", "p-1")
+                                            cardTitle.textContent = character.name
+                                            cardBody.appendChild(cardTitle)
+
+                                        }
+
+                                    })
+
+                                }
+
+                            }
+
+                        })
+
+                    }
+
                 }
             })
         })
     }
 }
 
-// Show More Btn
+// Show More Btn //
 
 showMoreBtn?.addEventListener(("click"), showMore)
 
@@ -166,3 +260,4 @@ async function showMore() {
         )
     }
 }
+

@@ -1,0 +1,13 @@
+.card {
+    cursor: pointer;
+}
+
+.list-group-item {
+    cursor: pointer;
+}
+
+#charLocation {
+    cursor: pointer;
+    margin: 0 auto;
+    font-weight: bold;
+}
