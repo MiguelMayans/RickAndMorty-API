@@ -6,6 +6,7 @@ const showMoreBtn = document.querySelector("#ShowMoreBtn")
 const episodeList = document.querySelector("#episodeList")
 const main2 = document.querySelector("#residentsContainer") as HTMLElement
 const main = document.querySelector("#titleContainer") as HTMLElement
+
 // Init Function //
 
 window.addEventListener("load", init);
@@ -155,6 +156,9 @@ async function showCharacters(episode: Episodes) {
                     }
 
                 }
+
+                // Show Location // 
+
                 async function showLocation() {
 
                     for (let i = 1; i <= 7; i++) {
@@ -184,7 +188,6 @@ async function showCharacters(episode: Episodes) {
                                 main.appendChild(locDimension)
                                 main.appendChild(locType)
                                 main.appendChild(residentsTitle)
-
 
                                 for (let i = 1; i <= 42; i++) {
 
@@ -218,17 +221,11 @@ async function showCharacters(episode: Episodes) {
                                             cardBody.appendChild(cardTitle)
 
                                         }
-
                                     })
-
                                 }
-
                             }
-
                         })
-
                     }
-
                 }
             })
         })
